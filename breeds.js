@@ -17,6 +17,5 @@ const getBreeds = (name) => {
 
 const cats = getBreeds("cat_breeds");
 const dogs = getBreeds("dog_breeds");
-const allAnimals = cats.concat(dogs);
 
-export { petTypes, cats, dogs, allAnimals };
+export { petTypes, cats, dogs };
