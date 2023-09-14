@@ -2,6 +2,18 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { petTypes, cats, dogs, allAnimals } from "./breeds";
 
+const getAverageRating = (item) => {
+  let sum = 0;
+  let count = 0;
+  for (let key in item) {
+    if (key !== "breed") {
+      sum += item[key];
+      count++;
+    }
+  }
+  return (sum / count).toFixed(2);
+};
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -11,6 +23,9 @@ export default function App() {
         renderItem={({ item }) => (
           <View>
             <Text style={styles.breedName}>{item.breed}</Text>
+            <Text style={styles.averageRating}>
+              Avg Rating: {getAverageRating(item)}
+            </Text>
             {Object.keys(item).map((key) => {
               if (key !== "breed") {
                 return (
@@ -61,5 +76,10 @@ const styles = StyleSheet.create({
   propertyValue: {
     flex: 1,
     textAlign: "right",
+  },
+  averageRating: {
+    flex: 1,
+    textAlign: "right",
+    color: "green",
   },
 });
