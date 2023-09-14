@@ -1,5 +1,13 @@
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TextInput,
+  Button,
+} from "react-native";
 import { petTypes, cats, dogs, allAnimals } from "./breeds";
 
 const getAverageRating = (item) => {
@@ -15,11 +23,22 @@ const getAverageRating = (item) => {
 };
 
 export default function App() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const filteredAnimals = allAnimals.filter((animal) =>
+    animal.breed.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.searchInput}
+        value={searchTerm}
+        onChangeText={setSearchTerm}
+        placeholder="Search for a breed..."
+      />
       <FlatList
         style={styles.list}
-        data={allAnimals}
+        data={filteredAnimals}
         renderItem={({ item }) => (
           <View>
             <Text style={styles.breedName}>{item.breed}</Text>
@@ -80,5 +99,12 @@ const styles = StyleSheet.create({
   averageRating: {
     fontSize: 18,
     color: "green",
+  },
+  searchInput: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    margin: 10,
+    padding: 10,
   },
 });
