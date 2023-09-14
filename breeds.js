@@ -1,21 +1,22 @@
-import * as data from './cat-and-dog-breeds.json'
+import * as data from "./cat-and-dog-breeds.json";
 
-const petTypes = []
+const petTypes = [];
 for (let key in data) {
-  petTypes.push(key)
+  petTypes.push(key);
 }
 
 const getBreeds = (name) => {
-  const arr = []
+  const arr = [];
   for (let key in data[name]) {
-    const obj = data[name][key]
-    obj.breed = key
-    arr.push(obj)
+    const obj = data[name][key];
+    obj.breed = key;
+    arr.push(obj);
   }
-  return arr
-}
+  return arr;
+};
 
-const cats = getBreeds('cat_breeds')
-const dogs = getBreeds('dog_breeds')
+const cats = getBreeds("cat_breeds");
+const dogs = getBreeds("dog_breeds");
+const allAnimals = cats.concat(dogs);
 
-export { petTypes, cats, dogs }
+export { petTypes, cats, dogs, allAnimals };
