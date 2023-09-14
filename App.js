@@ -8,8 +8,21 @@ export default function App() {
       <FlatList
         style={styles.list}
         data={allAnimals}
-        renderItem={({ item }) => <Text>{item.breed}</Text>}
-        keyExtractor={(item) => item.breed}
+        renderItem={({ item }) => (
+          <View>
+            <Text style={styles.breedName}>{item.breed}</Text>
+            {Object.keys(item).map((key) => {
+              if (key !== "breed") {
+                return (
+                  <View style={styles.propertyContainer}>
+                    <Text style={styles.propertyKey}>{key}</Text>
+                    <Text style={styles.propertyValue}>{item[key]}</Text>
+                  </View>
+                );
+              }
+            })}
+          </View>
+        )}
       />
     </View>
   );
@@ -31,5 +44,22 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     color: "red",
+  },
+  breedName: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+  },
+  propertyContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  propertyKey: {
+    fontWeight: "bold",
+  },
+  propertyValue: {
+    flex: 1,
+    textAlign: "right",
   },
 });
