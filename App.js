@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   breedName: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "red",
+    padding: 10,
   },
   propertyContainer: {
     flexDirection: "row",
@@ -71,15 +71,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   propertyKey: {
-    fontWeight: "bold",
+    fontSize: 16,
+    color: "grey",
   },
   propertyValue: {
-    flex: 1,
-    textAlign: "right",
+    fontSize: 16,
   },
   averageRating: {
-    flex: 1,
-    textAlign: "right",
+    fontSize: 18,
     color: "green",
   },
 });
